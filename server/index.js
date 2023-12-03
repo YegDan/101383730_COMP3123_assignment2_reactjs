@@ -10,7 +10,7 @@ app.use(cors());
 
 const SERVER_PORT = 8181
 
-const DB_CONNECTION_STRING = 'mongodb+srv://rootadmin:passvenus@cluster0.fpg8zxl.mongodb.net/assignment2?retryWrites=true&w=majority'
+const DB_CONNECTION_STRING = 'mongodb://mongo/assignment2'
 
 mongoose.connect(DB_CONNECTION_STRING)
 .then(() => console.log('Successfully connected to MongoDB'))
