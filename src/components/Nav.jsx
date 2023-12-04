@@ -1,14 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-
-export default function Nav() {
+const Nav = ({ isLoggedIn, onLogout }) => {
   return (
     <nav>
-        <Link to="Login.jsx">Login</Link>
-        <Link to="Signup.jsx">Sign Up</Link>
-        <Link to="HomeScreen.jsx">Home</Link>
-
+      {isLoggedIn ? (
+        <>
+          <Link to="HomeScreen.jsx">Home</Link>
+          <button onClick={onLogout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <Link to="Login.jsx">Login</Link>
+          <Link to="Signup.jsx">Sign Up</Link>
+        </>
+      )}
     </nav>
-  )
-}
+  );
+};
+
+export default Nav;

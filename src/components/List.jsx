@@ -1,22 +1,23 @@
 import React from 'react'
 import ListItem from './ListItem'
 
-export default function List({employees, onUpdate, onDelete, onView}) {
+export default function List({employees, actionHandlers}) {
   return (
     <table>
       <thead>
         <tr>
-          <th>Employee First Name</th>
-          <th>Employee Last Name</th>
-          <th>Employee Email Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {employees.map(employee => (
-        <ListItem key={employee.id} employee={employee}  />
-        ))}
-      </tbody>
+      {employees.map(employee => (
+      
+        <ListItem key={employee._id} employee={employee} actionHandlers={actionHandlers} />
+      ))}
+    </tbody>
     </table>
   )
 }

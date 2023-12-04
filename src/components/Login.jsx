@@ -1,41 +1,76 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
-    const [userName, setUserName] = useState('')
-    const [userPass, setUserPass] = useState('')
+function Login({onLogin}) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-    const handlePasswordChange = (e)=>{
-        setUserPass(e.target.value)
-    }
-    const handleUserNameChange = (e)=>{
-        setUserName(e.target.value)
-    }
-    const handleFormSubmission = (e) =>{
-        e.preventDefault()
-    }
-  return (
-    <form onSubmit={handleFormSubmission}>
-    <div className="mb-3">
-        <label for="username" className="form-label">Username</label>
-        <input 
-        type="text" 
-        className="form-control" 
-        id="username" 
-        placeholder="Enter your username"
-        value={userName}
-        onChange={handleUserNameChange}/>
-    </div>
-    <div className="mb-3">
-        <label for="password" className="form-label">Password</label>
-        <input type="password" 
-        className="form-control" 
-        id="password"
-        placeholder="Enter your password"
-        value={userPass}
-        onChange={handlePasswordChange}/>
-    </div>
-    <button type="button" class="btn">Login</button>
-    </form>
-  )
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handleFormSubmission = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8181/api/users/login', {
+                email: email,
+                password: password
+            });
+            console.log(response.data); 
+            onLogin()
+            navigate('HomeScreen.jsx');
+        } catch (error) {
+            if (error.response) {
+
+                console.error('Error data:', error.response.data);
+                console.error('Error status:', error.response.status);
+                console.error('Error headers:', error.response.headers);
+            } else if (error.request) {
+
+                console.error('Error request:', error.request);
+            } else {
+
+                console.error('Error message:', error.message);
+            }
+            console.error('Error config:', error.config);
+        }
+    };
+    
+
+    return (
+        <form onSubmit={handleFormSubmission}>
+            <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input 
+                    type="email" 
+                    className="form-control" 
+                    id="email" 
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={handleEmailChange}
+                />
+            </div>
+            <div className="mb-3">
+                <label htmlFor="password" className="form-label">Password</label>
+                <input 
+                    type="password" 
+                    className="form-control" 
+                    id="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+            </div>
+            <button type="submit" className="btn btn-primary">Login</button>
+        </form>
+    );
 }
-export default Login
+
+export default Login;
+
