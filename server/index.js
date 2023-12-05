@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const userRouter = require('./routers/users'); // path to your user router file
-const employeeRouter = require('./routers/employees'); // path to your employee router file
+const userRouter = require('./routers/users'); 
+const employeeRouter = require('./routers/employees'); 
 const cors = require('cors');
 
 const app = express();

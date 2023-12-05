@@ -46,7 +46,7 @@ function Signup() {
     {isSignupSuccessful ? (
 
       <div>
-        <p>Signup successful! Please login with your new account.</p>
+        <p>Signup successful! You can login now.</p>
       </div>
     ) : (
    

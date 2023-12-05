@@ -11,7 +11,7 @@ const ViewEmployee = ({ employeeId, onBack }) => {
         const response = await axios.get(`http://localhost:8181/api/employees/${employeeId}`);
         setEmployee(response.data);
       } catch (error) {
-        console.error("Error fetching employee details:", error);
+        console.error("Error fetching employee:", error);
       }
     };
 
@@ -29,7 +29,7 @@ const ViewEmployee = ({ employeeId, onBack }) => {
       <p><strong>Last Name:</strong> {employee.last_name}</p>
       <p><strong>Email:</strong> {employee.email}</p>
       <p><strong>Position:</strong> {employee.position}</p>
-      {/* You can add more details here */}
+  
       <button onClick={onBack}>Back to List</button>
     </div>
   );

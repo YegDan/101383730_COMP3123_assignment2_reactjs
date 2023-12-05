@@ -41,12 +41,12 @@ export default function HomeScreen() {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this employee?')) {
+    if (window.confirm('Are you sure you want to delete employee?')) {
       try {
         await axios.delete(`http://localhost:8181/api/employees/${id}`);
         setEmployees(employees.filter(employee => employee._id !== id));
       } catch (error) {
-        console.error('Error deleting employee:', error);
+        console.error('There was an error deleting employee:', error);
       }
     }
   };

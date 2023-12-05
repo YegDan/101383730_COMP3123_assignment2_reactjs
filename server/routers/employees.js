@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Employee = require('../models/employee'); // Adjust the path according to your structure
+const Employee = require('../models/employee'); 
 
-// GET all employees
+// GET all 
 router.get('/', async (req, res) => {
     try {
         const employees = await Employee.find();
@@ -12,12 +12,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET a single employee by ID
+// GET by ID
 router.get('/:id', getEmployee, (req, res) => {
     res.json(res.employee);
 });
 
-// POST a new employee
+// POST
 router.post('/', async (req, res) => {
     const employee = new Employee({
         first_name: req.body.first_name,
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// PUT update an employee by ID
+// PUT 
 router.put('/:id', getEmployee, async (req, res) => {
     if (req.body.first_name != null) {
         res.employee.first_name = req.body.first_name;
@@ -63,7 +63,7 @@ router.delete('/:id', async (req, res) => {
         if (result.deletedCount === 0) {
             return res.status(404).json({ message: 'Employee not found' });
         }
-        res.json({ message: 'Employee deleted' });
+        res.json({ message: 'Employee is deleted' });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -71,13 +71,12 @@ router.delete('/:id', async (req, res) => {
 
 
 
-// Middleware to get employee by ID
 async function getEmployee(req, res, next) {
     let employee;
     try {
         employee = await Employee.findById(req.params.id);
         if (employee == null) {
-            return res.status(404).json({ message: 'Cannot find employee' });
+            return res.status(404).json({ message: 'Cant find employee' });
         }
     } catch (err) {
         return res.status(500).json({ message: err.message });

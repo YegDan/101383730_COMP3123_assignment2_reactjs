@@ -9,7 +9,7 @@ export default function List({employees, actionHandlers}) {
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
-          <th>Actions</th>
+          <th>Operations</th>
         </tr>
       </thead>
       <tbody>

@@ -28,17 +28,17 @@ function Login({onLogin}) {
         } catch (error) {
             if (error.response) {
 
-                console.error('Error data:', error.response.data);
+                console.error('Error message:', error.response.data);
                 console.error('Error status:', error.response.status);
                 console.error('Error headers:', error.response.headers);
             } else if (error.request) {
 
-                console.error('Error request:', error.request);
+                console.error('Error message:', error.request);
             } else {
 
                 console.error('Error message:', error.message);
             }
-            console.error('Error config:', error.config);
+            console.error('Error message:', error.config);
         }
     };
     

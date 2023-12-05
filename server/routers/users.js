@@ -17,14 +17,14 @@ router.post('/register', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-        // Check if the username and email are already in use
+
         let existingUser = await User.findOne({ $or: [{ username: req.body.username }, { email: req.body.email }] });
         if (existingUser) {
             return res.status(400).json({ message: 'Username or email already in use' });
         }
 
         const user = new User({
-            username: req.body.username, // Add the username
+            username: req.body.username,
             email: req.body.email,
             password: hashedPassword,
         });
@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
 
         const userWithoutPassword = { ...newUser._doc };
         delete userWithoutPassword.password;
-        res.status(201).json({ user: userWithoutPassword, message: 'Registration successful' });
+        res.status(201).json({ user: userWithoutPassword, message: 'Registration is successful' });
     } catch (err) {
         res.status(500).json({ message: 'Error registering new user', error: err });
     }
